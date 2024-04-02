@@ -3,115 +3,225 @@ import {
   View,
   Text,
   StyleSheet,
-  ImageBackground,
-  TouchableOpacity,
+  Image,
+  TextInput,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 
+const deviceWidth = Dimensions.get('window').width;
+
+const carTypes = [
+  {id: 1, label: 'Ride', img: require('../../assets/image/ride.png')},
+  {id: 2, label: 'Package', img: require('../../assets/image/package.png')},
+  {id: 3, label: 'Rentals', img: require('../../assets/image/rentals.png')},
+  {id: 4, label: 'Intercity', img: require('../../assets/image/reserve.png')},
+];
+
+const typeOfVehicles = [
+  {id: 1, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
+  {id: 2, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
+  {id: 3, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
+  {id: 4, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
+];
+
 const HomeScreen = ({navigation}: any) => {
-  const navigateToBooking = () => {};
-
   return (
-    <ImageBackground
-      source={require('../../assets/image/background.jpg')}
-      style={styles.backgroundImage}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Welcome to CarWashApp</Text>
-          <Text style={styles.subtitle}>
-            The best way to keep your car clean and shining
-          </Text>
+    <ScrollView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.headerText}>Uber</Text>
+
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Where to?"
+            placeholderTextColor="#000"
+          />
+          <Image
+            style={styles.searchImage}
+            resizeMode="cover"
+            source={require('../../assets/image/search.png')}
+          />
         </View>
 
-        <View style={styles.featuresContainer}>
-          <View style={styles.feature}>
-            <Text style={styles.featureText}>Wide Range of Services</Text>
-          </View>
-          <View style={styles.feature}>
-            <Text style={styles.featureText}>Convenient Scheduling</Text>
-          </View>
-          <View style={styles.feature}>
-            <Text style={styles.featureText}>Affordable Prices</Text>
-          </View>
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionHeader}>Suggestions</Text>
+          <Text style={styles.seeAllText}>See All</Text>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={navigateToBooking}>
-          <Text style={styles.buttonText}>Book a Wash</Text>
-        </TouchableOpacity>
+        <View style={styles.carTypesContainer}>
+          {carTypes.map(item => (
+            <View key={item.id} style={styles.carTypeItem}>
+              {(item.id === 1 || item.id === 3) && (
+                <View style={styles.promoBadge}>
+                  <Text style={styles.promoText}>Promo</Text>
+                </View>
+              )}
+              <Image
+                style={styles.carTypeImage}
+                resizeMode="contain"
+                source={item.img}
+              />
+              <Text style={styles.carTypeLabel}>{item.label}</Text>
+            </View>
+          ))}
+        </View>
 
-        <Text style={styles.footerText}>
-          Contact us for custom packages and discounts!
-        </Text>
-      </ScrollView>
-    </ImageBackground>
+        <View style={styles.bannerContainer}>
+          <Image
+            resizeMode="cover"
+            style={styles.bannerImage}
+            source={require('../../assets/image/banner-payment.png')}
+          />
+        </View>
+
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionHeader}>More ways to use Uber</Text>
+        </View>
+
+        <View style={styles.vehicleContainer}>
+          {typeOfVehicles.map(item => (
+            <View key={item.id} style={styles.vehicleItem}>
+              <Image
+                style={styles.vehicleImage}
+                resizeMode="cover"
+                source={require('../../assets/image/green.png')}
+              />
+              <Text style={styles.vehicleLabel}>{item.label}</Text>
+              <Text style={styles.vehicleDescription}>{item.description}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-  },
   container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    flex: 1,
+    backgroundColor: 'white',
+    paddingHorizontal: 10,
   },
-  header: {
-    alignItems: 'center',
-    marginBottom: 40,
+  content: {
+    flex: 1,
   },
-  title: {
-    fontSize: 28,
+  headerText: {
+    fontSize: 32,
+    lineHeight: 36,
     fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 10,
+    color: '#000',
+    marginTop: 20,
   },
-  subtitle: {
-    fontSize: 18,
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 20,
+  searchContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  featuresContainer: {
+  searchInput: {
+    flex: 1,
+    backgroundColor: '#e8e8e8',
+    borderRadius: 20,
+    paddingLeft: 60,
+    fontWeight: '600',
+    fontSize: 20,
+  },
+  searchImage: {
+    width: 20,
+    height: 20,
+    position: 'absolute',
+    left: 20,
+    top: 13,
+  },
+  sectionContainer: {
+    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 40,
-    gap: 20,
-  },
-  feature: {
     alignItems: 'center',
-    backgroundColor: '#3498db',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    width: '30%',
   },
-  featureText: {
-    fontSize: 16,
-    color: '#fff',
+  sectionHeader: {
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: '700',
+    color: '#000',
     textAlign: 'center',
   },
-  button: {
-    backgroundColor: '#3498db',
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 25,
+  seeAllText: {
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: '500',
+    color: '#000',
+    textAlign: 'center',
+  },
+  carTypesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  carTypeItem: {
+    height: 120,
+    borderRadius: 20,
+    width: deviceWidth / 5,
+    backgroundColor: '#f3f3f3',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  promoBadge: {
+    position: 'absolute',
+    top: 0,
+    backgroundColor: '#4f8453',
+    width: 60,
+    height: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  promoText: {
+    color: 'white',
+    fontSize: 10,
+  },
+  carTypeImage: {
+    width: 50,
+    height: 50,
+  },
+  carTypeLabel: {
+    fontSize: 12,
+    lineHeight: 14,
+    color: '#000',
+    marginTop: 10,
+  },
+  bannerContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  bannerImage: {
+    width: deviceWidth - 20,
+    height: 100,
+    borderRadius: 20,
+  },
+  vehicleContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 20,
+    justifyContent: 'space-between',
+  },
+  vehicleItem: {
+    width: '45%',
     marginBottom: 20,
   },
-  buttonText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
+  vehicleImage: {
+    width: '100%',
+    height: 100,
+    borderRadius: 20,
   },
-  footerText: {
-    fontSize: 14,
-    color: '#fff',
-    textAlign: 'center',
+  vehicleLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  vehicleDescription: {
+    fontSize: 12,
+    color: '#555',
   },
 });
 

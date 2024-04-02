@@ -19,19 +19,19 @@ interface OnBoardingType {
 const onboardingList: OnBoardingType[] = [
   {
     id: 1,
-    image: require('../../assets/image/car-wash.jpg'),
+    image: require('../../assets/image/background.jpg'),
     heading: 'Convenient Car Wash Booking',
     label: 'Schedule car washes at your convenience with our app',
   },
   {
     id: 2,
-    image: require('../../assets/image/car-wash.jpg'),
+    image: require('../../assets/image/car-wash1.jpg'),
     heading: 'Quality Services',
     label: 'Experience top-notch car cleaning services from professionals',
   },
   {
     id: 3,
-    image: require('../../assets/image/car-wash.jpg'),
+    image: require('../../assets/image/car-wash2.jpg'),
     heading: 'Eco-Friendly Solutions',
     label:
       'We use eco-friendly products and techniques for a cleaner environment',
@@ -47,7 +47,8 @@ const Welcome = ({navigation}: any) => {
 
   useEffect(() => {
     if (initialIndex == 2) {
-      navigation?.navigate('Home');
+      let timer = setTimeout(() => navigation?.navigate('Home'), 5000);
+      return () => clearTimeout(timer);
     }
   }, [initialIndex]);
 
@@ -74,7 +75,7 @@ const Welcome = ({navigation}: any) => {
         itemWidth={deviceWidth}
         onSnapToItem={(index: number) => setInitialIndex(index)}
         autoplay={true}
-        autoplayInterval={5000}
+        autoplayInterval={10000}
         loop={true}
         loopClonesPerSide={onboardingList.length}
       />
