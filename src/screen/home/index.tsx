@@ -9,10 +9,7 @@ import {
 } from 'react-native';
 
 const HomeScreen = ({navigation}: any) => {
-  const navigateToBooking = () => {
-    // Navigate to the booking screen
-    navigation.navigate('Booking');
-  };
+  const navigateToBooking = () => {};
 
   return (
     <ImageBackground
