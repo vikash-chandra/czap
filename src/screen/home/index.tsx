@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -25,17 +26,70 @@ const typeOfVehicles = [
   {id: 4, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
 ];
 
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
+interface ProductListResponse {
+  products: Product[];
+}
+
 const HomeScreen = ({navigation}: any) => {
+  const [searchResult, setSearchResult] = useState<ProductListResponse>();
+  const [searchText, setSearchText] = useState('');
+
+  const searchItem = (inputText: string) => {
+    fetch(
+      'https://dummyjson.com/products/search?q=' +
+        inputText?.toLocaleLowerCase(),
+    )
+      .then(res => res.json())
+      .then(json => setSearchResult(json))
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    if (searchText?.length) {
+      let timer = setTimeout(() => searchItem(searchText), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [searchText]);
+
+  const addPost = () => {
+    setSearchResult(undefined);
+    fetch('https://dummyjson.com/posts/add', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        title: 'I am in love with someone.',
+        userId: 5,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .then(console.log);
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.headerText}>Uber</Text>
-
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
             placeholder="Where to?"
             placeholderTextColor="#000"
+            onChangeText={val => setSearchText(val)}
           />
           <Image
             style={styles.searchImage}
@@ -43,12 +97,10 @@ const HomeScreen = ({navigation}: any) => {
             source={require('../../assets/image/search.png')}
           />
         </View>
-
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionHeader}>Suggestions</Text>
           <Text style={styles.seeAllText}>See All</Text>
         </View>
-
         <View style={styles.carTypesContainer}>
           {carTypes.map(item => (
             <View key={item.id} style={styles.carTypeItem}>
@@ -66,7 +118,6 @@ const HomeScreen = ({navigation}: any) => {
             </View>
           ))}
         </View>
-
         <View style={styles.bannerContainer}>
           <Image
             resizeMode="cover"
@@ -74,11 +125,9 @@ const HomeScreen = ({navigation}: any) => {
             source={require('../../assets/image/banner-payment.png')}
           />
         </View>
-
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionHeader}>More ways to use Uber</Text>
         </View>
-
         <View style={styles.vehicleContainer}>
           {typeOfVehicles.map(item => (
             <View key={item.id} style={styles.vehicleItem}>
@@ -93,6 +142,17 @@ const HomeScreen = ({navigation}: any) => {
           ))}
         </View>
       </View>
+      {searchResult?.products?.length && (
+        <View style={styles.searchResultsContainer}>
+          {searchResult?.products?.map((item: Product, index: number) => (
+            <TouchableOpacity key={index} onPress={addPost}>
+              <View style={styles.searchResultItem}>
+                <Text style={styles.searchResultText}>{item?.title}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
     </ScrollView>
   );
 };
@@ -222,6 +282,24 @@ const styles = StyleSheet.create({
   vehicleDescription: {
     fontSize: 12,
     color: '#555',
+  },
+  searchResultsContainer: {
+    position: 'absolute',
+    top: 150,
+    backgroundColor: 'white',
+    width: deviceWidth - 20,
+    paddingBottom: 50,
+  },
+  searchResultItem: {
+    height: 50,
+    justifyContent: 'center',
+    borderBottomWidth: 0.2,
+    borderColor: 'grey',
+  },
+  searchResultText: {
+    fontSize: 14,
+    lineHeight: 18,
+    fontWeight: '600',
   },
 });
 
