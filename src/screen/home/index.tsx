@@ -9,21 +9,254 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-
 const deviceWidth = Dimensions.get('window').width;
 
 const carTypes = [
-  {id: 1, label: 'Ride', img: require('../../assets/image/ride.png')},
-  {id: 2, label: 'Package', img: require('../../assets/image/package.png')},
-  {id: 3, label: 'Rentals', img: require('../../assets/image/rentals.png')},
-  {id: 4, label: 'Intercity', img: require('../../assets/image/reserve.png')},
-];
-
-const typeOfVehicles = [
-  {id: 1, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
-  {id: 2, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
-  {id: 3, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
-  {id: 4, label: 'Go Green', description: 'Ride in a fully electric vehicle'},
+  {
+    id: 1,
+    label: 'Small/Hatchback',
+    img: require('../../assets/image/small.png'),
+    typeOfVehicles: [
+      {
+        id: 1,
+        label: 'Quick Wash',
+        price: '200 - 300',
+        image: require('../../assets/image/small1.jpg'),
+        description: 'Full car shampoo and wash (Exterior only)',
+      },
+      {
+        id: 2,
+        label: 'Essential',
+        price: '500 - 600',
+        image: require('../../assets/image/small1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 3,
+        label: 'Gold',
+        price: '750 - 850',
+        image: require('../../assets/image/small1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 4,
+        label: 'Premium',
+        price: '1200 - 1500',
+        image: require('../../assets/image/small1.jpg'),
+        description: 'Full Car exterior body Shampoo Wash',
+      },
+      {
+        id: 5,
+        label: 'Paint Protection ',
+        price: '7500 - 10000',
+        image: require('../../assets/image/small1.jpg'),
+        description: 'Outing body pressure wash',
+      },
+      {
+        id: 6,
+        label: 'Ceramic Treatment',
+        price: '10000 - 12000',
+        image: require('../../assets/image/small1.jpg'),
+        description: 'Pressure Wash and Shampoo Wash',
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: 'Sedan',
+    img: require('../../assets/image/sedan.png'),
+    typeOfVehicles: [
+      {
+        id: 1,
+        label: 'Quick Wash',
+        price: '200 - 300',
+        image: require('../../assets/image/sedan1.jpg'),
+        description: 'Full car shampoo and wash (Exterior only)',
+      },
+      {
+        id: 2,
+        label: 'Essential',
+        price: '500 - 700',
+        image: require('../../assets/image/sedan1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 3,
+        label: 'Gold',
+        price: '750 - 900',
+        image: require('../../assets/image/sedan1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 4,
+        label: 'Premium',
+        price: '1300 - 1800',
+        image: require('../../assets/image/sedan1.jpg'),
+        description: 'Full Car exterior body Shampoo Wash',
+      },
+      {
+        id: 5,
+        label: 'Paint Protection ',
+        price: '7500 - 10000',
+        image: require('../../assets/image/sedan1.jpg'),
+        description: 'Outing body pressure wash',
+      },
+      {
+        id: 6,
+        label: 'Ceramic Treatment',
+        price: '10000 - 15000',
+        image: require('../../assets/image/sedan1.jpg'),
+        description: 'Pressure Wash and Shampoo Wash',
+      },
+    ],
+  },
+  {
+    id: 3,
+    label: 'Sub-Compact SUV',
+    img: require('../../assets/image/suv.png'),
+    typeOfVehicles: [
+      {
+        id: 1,
+        label: 'Quick Wash',
+        price: '250 - 350',
+        image: require('../../assets/image/suv1.jpg'),
+        description: 'Full car shampoo and wash (Exterior only)',
+      },
+      {
+        id: 2,
+        label: 'Essential',
+        price: '500 - 800',
+        image: require('../../assets/image/suv1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 3,
+        label: 'Gold',
+        price: '750 - 1200',
+        image: require('../../assets/image/suv1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 4,
+        label: 'Premium',
+        price: '1300 - 1800',
+        image: require('../../assets/image/suv1.jpg'),
+        description: 'Full Car exterior body Shampoo Wash',
+      },
+      {
+        id: 5,
+        label: 'Paint Protection ',
+        price: '7500 - 10000',
+        image: require('../../assets/image/suv1.jpg'),
+        description: 'Outing body pressure wash',
+      },
+      {
+        id: 6,
+        label: 'Ceramic Treatment',
+        price: '10000 - 15000',
+        image: require('../../assets/image/suv1.jpg'),
+        description: 'Pressure Wash and Shampoo Wash',
+      },
+    ],
+  },
+  {
+    id: 4,
+    label: '7 Seater SUV/MUV',
+    img: require('../../assets/image/7suv.png'),
+    typeOfVehicles: [
+      {
+        id: 1,
+        label: 'Quick Wash',
+        price: '300 - 400',
+        image: require('../../assets/image/7suv1.jpg'),
+        description: 'Full car shampoo and wash (Exterior only)',
+      },
+      {
+        id: 2,
+        label: 'Essential',
+        price: '700 - 1200',
+        image: require('../../assets/image/7suv1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 3,
+        label: 'Gold',
+        price: '800 - 1300',
+        image: require('../../assets/image/7suv1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 4,
+        label: 'Premium',
+        price: '2000 - 2500',
+        image: require('../../assets/image/7suv1.jpg'),
+        description: 'Full Car exterior body Shampoo Wash',
+      },
+      {
+        id: 5,
+        label: 'Paint Protection ',
+        price: '7500 - 10000',
+        image: require('../../assets/image/7suv1.jpg'),
+        description: 'Outing body pressure wash',
+      },
+      {
+        id: 6,
+        label: 'Ceramic Treatment',
+        price: '10000 - 15000',
+        image: require('../../assets/image/7suv1.jpg'),
+        description: 'Pressure Wash and Shampoo Wash',
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: 'Luxury/Premium',
+    img: require('../../assets/image/luxury.png'),
+    typeOfVehicles: [
+      {
+        id: 1,
+        label: 'Quick Wash',
+        price: '500 - 700',
+        image: require('../../assets/image/luxury1.jpg'),
+        description: 'Full car shampoo and wash (Exterior only)',
+      },
+      {
+        id: 2,
+        label: 'Essential',
+        price: '1500 - 1700',
+        image: require('../../assets/image/luxury1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 3,
+        label: 'Gold',
+        price: '1800 - 2000',
+        image: require('../../assets/image/luxury1.jpg'),
+        description: 'Full Car exterior body Shampoo and Wash',
+      },
+      {
+        id: 4,
+        label: 'Premium',
+        price: '2200 - 3000',
+        image: require('../../assets/image/luxury1.jpg'),
+        description: 'Full Car exterior body Shampoo Wash',
+      },
+      {
+        id: 5,
+        label: 'Paint Protection ',
+        price: '7500 - 10000',
+        image: require('../../assets/image/luxury1.jpg'),
+        description: 'Outing body pressure wash',
+      },
+      {
+        id: 6,
+        label: 'Ceramic Treatment',
+        price: '10000 - 15000',
+        image: require('../../assets/image/luxury1.jpg'),
+        description: 'Pressure Wash and Shampoo Wash',
+      },
+    ],
+  },
 ];
 
 interface Product {
@@ -47,6 +280,11 @@ interface ProductListResponse {
 const HomeScreen = ({navigation}: any) => {
   const [searchResult, setSearchResult] = useState<ProductListResponse>();
   const [searchText, setSearchText] = useState('');
+  const [initialIndex, setInitialIndex] = useState(0);
+  const [typeOfVehicles, setTypeOfVehicles] = useState(
+    carTypes[0]?.typeOfVehicles,
+  );
+  const [selectedCarType, setSelectedCarType] = useState(carTypes[0]);
 
   const searchItem = (inputText: string) => {
     fetch(
@@ -80,10 +318,25 @@ const HomeScreen = ({navigation}: any) => {
       .then(console.log);
   };
 
+  const handleCarTypeSelection = (carType: any) => {
+    setSelectedCarType(carType);
+    setTypeOfVehicles(carType.typeOfVehicles);
+  };
+
+  // Render carousel items
+  const renderCarouselItem = ({item, index}: {item: any; index: number}) => {
+    return (
+      <View style={styles.carouselItemContainer}>
+        <Image source={item.image} style={styles.carouselImage} />
+        <Text style={styles.carouselTitle}>{item.title}</Text>
+        <Text style={styles.carouselDescription}>{item.description}</Text>
+      </View>
+    );
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.headerText}>Uber</Text>
+        <Text style={styles.headerText}>Carzorro</Text>
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
@@ -98,50 +351,58 @@ const HomeScreen = ({navigation}: any) => {
           />
         </View>
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionHeader}>Suggestions</Text>
-          <Text style={styles.seeAllText}>See All</Text>
+          <Text style={styles.sectionHeader}>
+            Looking for Car Wash? Choose a Plan
+          </Text>
         </View>
-        <View style={styles.carTypesContainer}>
-          {carTypes.map(item => (
-            <View key={item.id} style={styles.carTypeItem}>
-              {(item.id === 1 || item.id === 3) && (
-                <View style={styles.promoBadge}>
-                  <Text style={styles.promoText}>Promo</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.carTypesContainer}>
+            {carTypes.map(item => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => handleCarTypeSelection(item)}>
+                <View style={styles.carTypeItem}>
+                  <Image
+                    style={styles.carTypeImage}
+                    resizeMode="contain"
+                    source={item.img}
+                  />
+                  <Text style={styles.carTypeLabel}>{item.label}</Text>
                 </View>
-              )}
-              <Image
-                style={styles.carTypeImage}
-                resizeMode="contain"
-                source={item.img}
-              />
-              <Text style={styles.carTypeLabel}>{item.label}</Text>
-            </View>
-          ))}
-        </View>
-        <View style={styles.bannerContainer}>
-          <Image
-            resizeMode="cover"
-            style={styles.bannerImage}
-            source={require('../../assets/image/banner-payment.png')}
-          />
-        </View>
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionHeader}>More ways to use Uber</Text>
-        </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+
+        {selectedCarType && (
+          <View style={styles.selectedCarTypeContainer}>
+            <Image
+              style={styles.selectedCarTypeImage}
+              resizeMode="contain"
+              source={selectedCarType.img}
+            />
+            <Text style={styles.selectedCarTypeLabel}>
+              {selectedCarType.label}
+            </Text>
+          </View>
+        )}
+
         <View style={styles.vehicleContainer}>
           {typeOfVehicles.map(item => (
-            <View key={item.id} style={styles.vehicleItem}>
+            <View key={item?.id} style={styles.vehicleItem}>
               <Image
                 style={styles.vehicleImage}
                 resizeMode="cover"
-                source={require('../../assets/image/green.png')}
+                source={item?.image}
               />
               <Text style={styles.vehicleLabel}>{item.label}</Text>
+              <Text style={styles.priceLabel}>{item.price}</Text>
               <Text style={styles.vehicleDescription}>{item.description}</Text>
             </View>
           ))}
         </View>
       </View>
+
       {searchResult?.products?.length && (
         <View style={styles.searchResultsContainer}>
           {searchResult?.products?.map((item: Product, index: number) => (
@@ -160,11 +421,12 @@ const HomeScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     paddingHorizontal: 10,
   },
   content: {
     flex: 1,
+    marginBottom: 40,
   },
   headerText: {
     fontSize: 32,
@@ -206,39 +468,19 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'center',
   },
-  seeAllText: {
-    fontSize: 12,
-    lineHeight: 14,
-    fontWeight: '500',
-    color: '#000',
-    textAlign: 'center',
-  },
   carTypesContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
+    gap: 20,
   },
   carTypeItem: {
     height: 120,
     borderRadius: 20,
-    width: deviceWidth / 5,
+    width: deviceWidth / 3,
     backgroundColor: '#f3f3f3',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  promoBadge: {
-    position: 'absolute',
-    top: 0,
-    backgroundColor: '#4f8453',
-    width: 60,
-    height: 20,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  promoText: {
-    color: 'white',
-    fontSize: 10,
   },
   carTypeImage: {
     width: 50,
@@ -250,17 +492,23 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 10,
   },
-  bannerContainer: {
-    marginTop: 20,
+  selectedCarTypeContainer: {
     alignItems: 'center',
+    marginTop: 20,
   },
-  bannerImage: {
-    width: deviceWidth - 20,
+  selectedCarTypeImage: {
+    width: 100,
     height: 100,
-    borderRadius: 20,
+  },
+  selectedCarTypeLabel: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000',
   },
   vehicleContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    textAlign: 'center',
     flexWrap: 'wrap',
     marginTop: 20,
     justifyContent: 'space-between',
@@ -268,6 +516,9 @@ const styles = StyleSheet.create({
   vehicleItem: {
     width: '45%',
     marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   vehicleImage: {
     width: '100%',
@@ -275,13 +526,22 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   vehicleLabel: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textAlign: 'center',
+  },
+  priceLabel: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 10,
+    alignSelf: 'center',
+    textAlign: 'center',
   },
   vehicleDescription: {
     fontSize: 12,
     color: '#555',
+    alignSelf: 'center',
+    textAlign: 'center',
   },
   searchResultsContainer: {
     position: 'absolute',
